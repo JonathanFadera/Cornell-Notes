@@ -43,7 +43,7 @@ The following API routes should be created:
 
 
 ## Credits
-[Jonathan Fadera](https://github.com/JonathanFadera)[Week_11-Express.js]()
+[Jonathan Fadera](https://github.com/JonathanFadera), [Week_11-Express.js](https://ucb.bootcampcontent.com/UCB-Coding-Bootcamp/UCB-VIRT-FSF-PT-01-2023-U-LOLC/-/tree/main/Week_11-Express)
 
 ## Questions
 If there are any questions, feel free to contact my email at: ericsonhnc@gmail.com
