@@ -9,13 +9,20 @@ module.exports = function (app) {
     // Populate the  notes from the JSON file
     app.get("/api/notes", function (req, res) {
         readFileAsync("db/db.json", "utf8").then(function (data) {
-            noteContents = JSON.parse(data)
+            noteContents = JSON.parse(data);
             res.json(noteContents);
-        })
-    })
-
+        });
+    });
+    app.get("/api/notes/:id", function (req, res) {
+        let chosenId = parseInt(req.params.id);
+        for (let i = 0; i < noteContents.length; i++) {
+            if (chosenId === noteContents[i].id) {
+                res.json(noteContents[i]);
+            }
+        }
+    });
+   
     // Posts new notes to the JSON file when entered and saved
-    
     app.post("/api/notes", function (req, res) {
         let newNote = req.body;
         noteContents.push(newNote);
@@ -25,6 +32,7 @@ module.exports = function (app) {
         });
         res.json(noteContents);
     });
+
     // Function to delete notes when trash can is clicked
     app.delete("/api/notes/:id", function (req, res) {
         let chosenId = parseInt(req.params.id);
@@ -39,4 +47,4 @@ module.exports = function (app) {
         }
         res.json(noteContents);
     });
-}
+};
