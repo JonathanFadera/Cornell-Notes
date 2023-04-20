@@ -7,7 +7,7 @@ const { notes } = require("../db/db.json");
 
 jest.mock('fs');
 
-test("creates an note object", () => {
+test("creates a note object", () => {
     const note = createNewNote(
       { title: "Test", text: "Test", id: "1234" },
       notes
