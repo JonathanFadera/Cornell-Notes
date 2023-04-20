@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-require("./routes/apiRoute");
+require("./routes/apiRoute")(app);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -11,6 +11,6 @@ app.use(express.static("public"));
 
 app.use('/', htmlRoutes);
 
-app.listen(PORT, () => {
+app.listen(PORT, function() => {
   console.log(`App listening on PORT ${PORT}!`);
 });
