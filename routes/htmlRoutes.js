@@ -1,17 +1,12 @@
-const express = require('express');
-const app = express();
+var path = require("path");
+const router = require('express').Router();
 
-// Route to serve the notes.html file
-app.get('/notes', (req, res) => {
-  res.sendFile(__dirname + '/public/notes.html');
-});
+router.get("/notes", function(req, res) {
+        res.sendFile(path.join(__dirname, "../public/notes.html"));
+    });
 
-// Route to serve the index.html file for all other routes
-app.get('*', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html');
-});
+router.get("*", function(req, res) {
+        res.sendFile(path.join(__dirname, "../public/index.html"));
+    });
 
-// Start the server
-app.listen(3001, () => {
-  console.log('Server listening on port 3001');
-});
+module.exports = router;
