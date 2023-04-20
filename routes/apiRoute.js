@@ -15,22 +15,16 @@ module.exports = function (app) {
     })
 
     // Posts new notes to the JSON file when entered and saved
-    // Had trouble setting the new Id number - this seems to work correctly on heroku -but not on my localhost
+    
     app.post("/api/notes", function (req, res) {
         let newNote = req.body;
-        let lastId = 0;
-        if (noteContents.length !== 0) {
-            lastId = noteContents[noteContents.length - 1]["id"];
-        }
-        let newId = lastId + 1;
-        newNote["id"] = newId;
         noteContents.push(newNote);
-        writeFileAsync("db/db.json", JSON.stringify(noteContents)).then(function () {
-            console.log("Note has been updated");
+        let noteJSON = JSON.stringify(noteContents, null, 2);
+        writeFileAsync("db/db.json", noteJSON).then(function () {
+            console.log("Note has been saved");
         });
-        res.json(newNote);
+        res.json(noteContents);
     });
-
     // Function to delete notes when trash can is clicked
     app.delete("/api/notes/:id", function (req, res) {
         let chosenId = parseInt(req.params.id);
@@ -45,4 +39,4 @@ module.exports = function (app) {
         }
         res.json(noteContents);
     });
-};
+}
