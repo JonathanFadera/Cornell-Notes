@@ -8,11 +8,13 @@ Express.js Note Taker
 Create an application called Note Taker that can be used to write and save notes. This application will use an Express.js back end and will save and retrieve note data from a JSON file.
 
 ## Table of Contents 
+- [Cornell Notes](#cornell-notes)
+  - [Description](#description)
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
   - [Usage](#usage)
   - [License](#license)
-  - [Tests](#tests)
+  - [Mock-up](#mock-up)
   - [Credits](#credits)
   - [Questions](#questions)
   - [Deployed Application](#deployed-application)
@@ -26,21 +28,10 @@ As a small business owner, I want to be able to write and save notes so that I c
 ## License
     This application is covered by the MIT license.
 
-## Tests
-On the back end, the application should include a `db.json` file that will be used to store and retrieve notes using the `fs` module.
-
-The following HTML routes should be created:
-
-* `GET /notes` should return the `notes.html` file.
-
-* `GET *` should return the `index.html` file.
-
-The following API routes should be created:
-
-* `GET /api/notes` should read the `db.json` file and return all saved notes as JSON.
-
-* `POST /api/notes` should receive a new note to save on the request body, add it to the `db.json` file, and then return the new note to the client. You'll need to find a way to give each note a unique id when it's saved (look into npm packages that could do this for you).
-
+## Mock-up
+The following images show the web application's appearance and functionality:
+![screenshot of the app with save button] (./assets/images/Mock-up with save button.png)
+![screenshot of the app without save button] (./assets/images/Mock-up without save button.png)
 
 ## Credits
 [Jonathan Fadera](https://github.com/JonathanFadera), [Week_11-Express.js](https://ucb.bootcampcontent.com/UCB-Coding-Bootcamp/UCB-VIRT-FSF-PT-01-2023-U-LOLC/-/tree/main/Week_11-Express)
