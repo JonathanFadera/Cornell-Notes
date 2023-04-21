@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
 
-// DELET request
+// DELETE request
 app.delete("/api/notes/:id", (req, res) => {
   fs.readFile(path.join(__dirname, "/db/db.json"), (err, data) => {
     if (err) throw err;
