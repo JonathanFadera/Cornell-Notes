@@ -29,7 +29,7 @@ As a small business owner, I want to be able to write and save notes so that I c
 ## Mock-up
 The following images show the web application's appearance and functionality:
   ![screenshot of the app with save button](./public/assets/images/Mock-up%20with%20save%20button.png)
-  ![screenshot of the app without save button](public/assets/images/Mock-up%20without%20Save%20Button.png))
+  ![screenshot of the app without save button](public/assets/images/Mock-up%20without%20Save%20Button.png)
 
 ## Credits
 [Jonathan Fadera](https://github.com/JonathanFadera), [Week_11-Express.js](https://ucb.bootcampcontent.com/UCB-Coding-Bootcamp/UCB-VIRT-FSF-PT-01-2023-U-LOLC/-/tree/main/Week_11-Express)
