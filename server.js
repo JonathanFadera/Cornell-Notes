@@ -20,43 +20,24 @@ app.get("/api/notes", (req, res) => {
   });
 });
 
-// Define DELETE route for deleting a note by ID
+// Read all notes from the db.json file
+let notes = JSON.parse(fs.readFileSync('db.json'));
+
+// DELETE /api/notes/:id endpoint
 app.delete('/api/notes/:id', (req, res) => {
   const id = req.params.id;
-  console.log(id);
-  // Delete notes from db.json file
-  fs.readFile(path.join(__dirname, "/db/db.json"), (err, data) => {
-    if (err) throw err;
-    const notes = JSON.parse(data);
-    // Remove note with given ID from notes array
-    notes.splice(id, 1);
-    // Write updated notes array to db.json file
-    fs.writeFile('db.json', JSON.stringify(notes), err => {
-      if (err) {
-        console.error(err);
-        return res.status(500).send('Error writing notes');
-      }
 
-      return res.send(`Note with ID ${id} deleted successfully`);
-    });
-  });
+  // Find the note with the given id property
+  const index = notes.findIndex((note) => note.id === id);
 
-  // Delete note with given ID from db.json file
-  fs.readFile(path.join(__dirname, "/db/db.json"), (err, data) => {
-    if (err) throw err;
-    const notes = JSON.parse(data);
-    // Remove note with given ID from notes array
-    notes.splice(id, 1);
-    // Write updated notes array to db.json file
-    fs.writeFile('db.json', JSON.stringify(notes), err => {
-      if (err) {
-        console.error(err);
-        return res.status(500).send('Error writing notes');
-      }
-
-      return res.send(`Note with ID ${id} deleted successfully`);
-    });
-  });
+  // If the note is found, remove it and rewrite the notes to the db.json file
+  if (index !== -1) {
+    notes.splice(index, 1);
+    fs.writeFileSync('db.json', JSON.stringify(notes));
+    res.sendStatus(204); // No Content
+  } else {
+    res.sendStatus(404); // Not Found
+  }
 });
 
 app.post('/api/notes', (req, res) => {
@@ -95,6 +76,6 @@ app.get("*", (req, res) => {
 });
 
 app.listen(PORT, () =>
-  console.log(`Listening for requests on port ${PORT}!`)
+  console.log(`Listening for requests on port ${PORT}`)
 
 );
