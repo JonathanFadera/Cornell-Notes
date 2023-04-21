@@ -20,6 +20,34 @@ app.get("/api/notes", (req, res) => {
   });
 });
 
+// Define DELETE route for deleting a note by ID
+app.delete('/api/notes/:id', (req, res) => {
+  const { id } = req.params;
+
+  // Read all notes from db.json file
+  fs.readFile('db.json', 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Error reading notes');
+    }
+
+    let notes = JSON.parse(data);
+
+    // Remove note with given ID from notes array
+    notes = notes.filter(note => note.id !== parseInt(id));
+
+    // Write updated notes array to db.json file
+    fs.writeFile('db.json', JSON.stringify(notes), err => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('Error writing notes');
+      }
+
+      return res.send(`Note with ID ${id} deleted successfully`);
+    });
+  });
+});
+
 app.post('/api/notes', (req, res) => {
   const { title, text } = req.body;
   if (!title || !text) {
@@ -44,21 +72,6 @@ app.post('/api/notes', (req, res) => {
   console.log(response)
   res.json(response)
 })
-
-// DELETE request
-
-app.delete("/api/notes/:id", (req, res) => {
-  const { id } = req.params;
-  fs.readFile(path.join(__dirname, "/db/db.json"), (err, data) => {
-    if (err) throw err;
-    const dbNotes = JSON.parse(data);
-    dbNotes = dbNotes.filter((note) => note.id !== id);
-    fs.writeFile("./db/db.json", JSON.stringify(dbNotes), (err) =>
-      err ? console.error(err) : console.log("Successfully deleted note.")
-    );
-    res.json(dbNotes);
-  });
-});
 
 // HTML routes for notes.html and index.html
 
